@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ApiCalendar from "react-google-calendar-api";
 import UpcomingEventsList from "./UpcomingEventsList";
 

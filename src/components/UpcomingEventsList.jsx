@@ -20,8 +20,10 @@ function UpcomingEventsList() {
       },
     };
 
-    await ApiCalendar.createEvent(event);
-    listUpcomingEvents();
+    if (description !== "") {
+      await ApiCalendar.createEvent(event);
+      listUpcomingEvents();
+    }
   };
 
   const listUpcomingEvents = async () => {
