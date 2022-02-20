@@ -1,35 +1,17 @@
 import React, { useState, useEffect } from "react";
 import ApiCalendar from "react-google-calendar-api";
+import CreateEvent from "./CreateEvent";
+import { XCircleFill } from 'react-bootstrap-icons';
+
 
 function UpcomingEventsList() {
-  const [date, setDate] = useState("2022-02-17T12:00");
-  const [description, setDescription] = useState("");
   const [itemList, setItemList] = useState([]);
-  const [granularity, setGranularity] = useState("7");
-
-  const handleSubmit = async () => {
-    const timeZone = ":00+00:00";
-    const event = {
-      summary: description,
-      description: "demo of create event function",
-      start: {
-        dateTime: `${date}${timeZone}`,
-      },
-      end: {
-        dateTime: `${date}${timeZone}`,
-      },
-    };
-
-    if (description !== "") {
-      await ApiCalendar.createEvent(event);
-      listUpcomingEvents();
-    }
-  };
+  const [granularity, setGranularity] = useState("7");  
+  
 
   const listUpcomingEvents = async () => {
     const date = new Date();
     date.setDate(date.getDate() + Number(granularity));
-    console.log(date);
 
     await ApiCalendar.listUpcomingEvents().then((result) => {
       setItemList(
@@ -41,58 +23,51 @@ function UpcomingEventsList() {
     });
   };
 
-  useEffect(() => {
-    listUpcomingEvents();
-  }, [granularity]);
-
   const deleteEntry = async (id) => {
     await ApiCalendar.deleteEvent(id);
     setItemList(itemList.filter((x) => x.id !== id));
   };
 
+  useEffect(() => {
+    listUpcomingEvents();
+  }, [granularity]);
+
+
   return (
-    <>
-      <label>
-        Description:
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </label>
-      <label>
-        Create date:
-        <input
-          type="datetime-local"
-          id="start"
-          name="trip-start"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </label>
-      <button onClick={handleSubmit}>Submit</button>
-
-      <label>Select range:</label>
-      <select
-        name="granularity"
-        onChange={(e) => setGranularity(e.target.value)}
-      >
-        <option value="7">7</option>
-        <option value="1">1</option>
-        <option value="30">30</option>
-      </select>
-
-      {itemList.map((x) => (
-        <div key={x.id}>
-          <span>
-            <p>
-              Event name: {x.summary} Date: {x.start.dateTime ?? x.start.date}
-              <button onClick={() => deleteEntry(x.id)}>Delete Entry</button>
-            </p>
-          </span>
+      <div className="container">
+        <div className="row">
+            <CreateEvent listUpcomingEvents={listUpcomingEvents}/>
         </div>
-      ))}
-    </>
+        <div className="row">
+          <div className="row justify-content-center">
+            <div className="col-2 range-width">
+              <label>Select day range:</label>
+            </div>
+            <div className="col-2">
+                <select
+                    className="select-size"
+                    name="granularity"
+                    onChange={(e) => setGranularity(e.target.value)}
+                  >
+                    <option value="7">7</option>
+                    <option value="1">1</option>
+                    <option value="30">30</option>
+                  </select>
+              </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-8">
+              {itemList.map((x) => (
+                <div className="row row-list-item" key={x.id}>
+                    <div className="col">{x.summary}</div>
+                    <div className="col">{x.start.dateTime.replace('T', ' ').split('+')[0] ?? `${x.start.date} 00:00`}</div>                    
+                    <div className="col-auto"><XCircleFill className="delete-item-button" onClick={() => deleteEntry(x.id)}/></div>                    
+                </div>
+              ))}
+             </div> 
+            </div>
+          </div>
+      </div>
   );
 }
 

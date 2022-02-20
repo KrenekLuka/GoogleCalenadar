@@ -20,7 +20,7 @@ function PureLogin() {
       {isLoggedIn ? (
         <span>
           <button onClick={handleLogOut}>Logout</button>
-          <p>{`${ApiCalendar.getBasicUserProfile().getName()}`}</p>
+          <p>{`${ApiCalendar.getBasicUserProfile().getName()}`}<img src={ApiCalendar.getBasicUserProfile().getImageUrl()} alt=""></img></p>
           <UpcomingEventsList />
         </span>
       ) : (
