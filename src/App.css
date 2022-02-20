@@ -1,22 +1,139 @@
-.App {
-  text-align: center;
-  margin-top: 10px;
+body {
+  margin-top: 5px;
 }
 
-.buttonText {
-  color: #4285f4;
-  font-weight: bolder;
+
+.header-row {
+   height: 40px;
 }
 
-.h2 {
-  color: #4285f4;
+.header-col-height {
+  height: 40px;
 }
 
-.icon {
-  height: 25px;
-  width: 25px;
-  margin-right: 0px;
-  position: absolute;
-  left: 30px;
-  align-items: center;
+img { 
+  height: 100%;
+  border-radius: 50%;
 }
+
+.container-calendar {
+  width: 80%;
+  height: 100%;
+  border-bottom: 2px solid #d6aa63;
+  padding-bottom: 2.5px;
+}
+
+.header-cell {
+  text-align: right;
+  line-height: 39px;  
+}
+
+.header-button {
+ border-radius: 5px;
+ background-color: #2645e0;
+ line-height: 32px;
+ cursor: pointer;
+ padding: 0px 10px;
+ color: white;
+}
+
+.header-button:hover {
+  background-color: #4e6af5;
+}
+
+.header-text {
+  font-family: "Geneva, Arial, sans-serif";
+}
+
+h3 {
+  line-height: 38px;
+}
+
+.list-container {
+  width: 80%;
+}
+
+.row-gutter-0 {
+  --bs-gutter-x: 0px;
+}
+
+.description-entry {
+  width: 250px;
+}
+
+.description-padding {
+  padding-left: 5px;
+}
+
+
+.description-bold {
+  font-weight: bold;
+}
+
+.row-margin-bottom {
+  margin-bottom: 5px;
+}
+
+.row-margin-top {
+  margin-top: 5px;
+}
+
+.create-event-border {
+  border-bottom: 2px solid #d6aa63;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.submit-button {
+  border-radius: 5px;
+  background-color: #2645e0;
+  line-height: 32px;
+  cursor: pointer;
+  padding: 0px 10px;
+  color: white;
+ }
+ 
+ .submit-button:hover {
+   background-color: #4e6af5;
+ }
+
+ .range-width {
+   width: 145px;
+ }
+
+ .row-list-item {
+   border: 2px solid #d6aa63                               ;
+   border-radius: 5px;
+   margin: 5px 0px;
+   padding: 5px 0px
+   
+ }
+
+ .row-list-item:hover {
+    background-color: #e3e9ff;
+    cursor: pointer;
+ }
+
+ .delete-item-button {
+   font-size: 20px;
+   color: #c41d0e;
+   cursor: pointer;
+ }
+
+ .delete-item-button:hover {
+    color: #c96f67;
+ }
+
+ .button-margin-top {
+   margin-top: 5px;
+ }
+
+ .calendar-day {
+   line-height: 28px;
+   font-size: 25px;
+   color: #2645e0;
+ }
+
+ .select-size {
+   width: 60px;
+ }
