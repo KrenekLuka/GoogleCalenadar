@@ -1,4 +1,4 @@
-# ars-futura-app
+# GoogleCalendar
 React google calendar api 
 
 NodeJS version = v17.5.0
